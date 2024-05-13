@@ -545,10 +545,11 @@ Mangas (drop this)/
 		</template>
 		<!-- reading screen -->
 		<template x-if="selectedChapter!=null && loaded && selectedManga && !loading">
-			<div class="mx-auto inline-block overflow-y-auto pb-2" @keydown.document.left="previousChapter()"
-				@keydown.document.right="nextChapter()" @keydown.document.1="setPageWidth(1)"
+			<div class="mx-auto inline-block overflow-y-auto pb-2" tabindex="0" x-init="$nextTick(() => {$el.focus()})"
+				@keydown.document.left="previousChapter()" @keydown.document.right="nextChapter()"
+				@keydown.document.0="setPageWidth(0)" @keydown.document.1="setPageWidth(1)"
 				@keydown.document.2="setPageWidth(2)" @keydown.document.3="setPageWidth(3)"
-				@keydown.document.0="setPageWidth(0)">
+				>
 				<template x-for="(page, index) in pages.sizes" :key="index">
 					<div class="mx-auto" x-data="{load: (index == 0 && !clickToLoad)}"
 						x-init="if (load) loadedImages++">
